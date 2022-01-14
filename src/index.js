@@ -4,21 +4,30 @@ import debounce from 'lodash.debounce';
 import Notiflix from 'notiflix';
 
 const DEBOUNCE_DELAY = 300;
-fetchCountries(['japan',"ukraine",'canada','usa','france', 'austria','sweden', 'norway', 'england','italy', 'spain', 'moldova','poland']);
+// fetchCountries(['japan',"ukraine",'canada','usa','france', 'austria','sweden', 'norway', 'england','italy', 'spain', 'moldova','poland']);
 
 const input = document.querySelector('#search-box');
 const listCountries = document.querySelector('.country-list');
 const countryInfo = document.querySelector('.country-info');
 
 const cb = (event) => {
-    
+    listCountries.innerHTML = '';
+    countryInfo.innerHTML = '';
     const inputValue = input.value;
     console.log(inputValue);
-    fetchCountries(inputValue).then(data => {
-        console.log(data);
-        createMarkup(data);
-        
-})
+    if (inputValue.trim() === '') return;
+    fetchCountries(inputValue)
+        .then(data => {
+            console.log(data);
+            createMarkup(data);
+            
+        })
+        .then(data => {
+            if (!data.results.length) {
+                console.log('return');
+                return;
+            }
+        })
         .catch();
     
     // if (data.length > 10) {
@@ -49,7 +58,8 @@ function createMarkup(countries) {
                  <p>Languages: ${Object.values(country.languages)}</p>
             `;
          })
-        .join("");
+            .join("");
+        listCountries.innerHTML = '';
         countryInfo.innerHTML = markup;
     }
 };
