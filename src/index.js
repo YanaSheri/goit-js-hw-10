@@ -30,7 +30,7 @@ function createMarkup(countries) {
     if (countries.length === null) {
         return;
     } else if (countries.length > 10) {
-        Notiflix.Notify.warning('Too many matches found. Please enter a more specific name.');
+        Notiflix.Notify.info('Too many matches found. Please enter a more specific name.');
     } else if (countries.length > 2 && countries.length < 10) {
          const markup = countries
              .map((country) => {
