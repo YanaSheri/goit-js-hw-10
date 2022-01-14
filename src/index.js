@@ -35,7 +35,7 @@ function createMarkup(countries) {
          const markup = countries
              .map((country) => {
                  console.log(country);
-            return `<li><img src="${country.flags.svg}" width="50"> ${country.name.common}</li>`;
+            return `<li class="list-item"><img src="${country.flags.svg}" width="50"> ${country.name.common}</li>`;
          })
         .join("");
         listCountries.innerHTML = markup;
