@@ -47,10 +47,10 @@ function createMarkup(countries) {
         const markup = countries
              .map((country) => {
                  console.log(country);
-                 return `<span class="name"><img src="${country.flags.svg}" width="50"> ${country.name.common}</span>
-                 <p>Capital: ${country.capital}</p>
-                 <p>Population: ${country.population}</p>
-                 <p>Languages: ${Object.values(country.languages)}</p>
+                 return `<span class="name"><img src="${country.flags.svg}" width="50"><b> ${country.name.common}</b></span>
+                 <p><b>Capital:</b> ${country.capital}</p>
+                 <p><b>Population:</b> ${country.population}</p>
+                 <p><b>Languages:</b> ${Object.values(country.languages)}</p>
             `;
          })
             .join("");
