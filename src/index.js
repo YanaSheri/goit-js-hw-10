@@ -13,28 +13,23 @@ const countryInfo = document.querySelector('.country-info');
 const cb = (event) => {
     listCountries.innerHTML = '';
     countryInfo.innerHTML = '';
-    const inputValue = input.value;
-    console.log(inputValue);
-    if (inputValue.trim() === '') return;
+    const inputValue = input.value.trim();
+
+    if (inputValue === '') return;
     fetchCountries(inputValue)
         .then(data => {
             console.log(data);
             createMarkup(data);
-            
         })
-        .then(data => {
-            if (!data.results.length) {
-                console.log('return');
-                return;
-            }
+        .catch(error => {
+            catchError(error);
         })
-        .catch();
-    
-    // if (data.length > 10) {
-    //         Notiflix.Notify.warning('Too many matches found. Please enter a more specific name.');
-    // }
 };
-// data => createMarkup(data.results)
+
+function catchError() {
+    Notiflix.Notify.failure('Oops, there is no country with that name')
+}
+
 function createMarkup(countries) {
     if (countries.length === null) {
         return;
